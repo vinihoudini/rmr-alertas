@@ -1,0 +1,69 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ambiente virtual
+venv/
+.venv/
+env/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*.pyo
+.mypy_cache/
+.ruff_cache/
+
+# Variáveis de ambiente
+.env
+.env.local
+
+# DuckDB (banco local — nunca versionar)
+*.duckdb
+*.duckdb.wal
+
+# Dados brutos do pipeline
+data/
+*.parquet
+*.csv
+
+# Dependências
+node_modules/
+
+# Build Next.js
+.next/
+out/
+build/
+
+# Cache
+.cache/
+.turbo/
+
+# Variáveis de ambiente
+.env.local
+.env.production
+
+# Tipos gerados
+next-env.d.ts
+
+
+# Tokens e chaves — NUNCA versionar
+*.pem
+*.key
+secrets.json
+
+# Banco de dados local
+*.duckdb
+*.sqlite
+*.db
+
+# Logs
+*.log
+logs/
