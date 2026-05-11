@@ -27,6 +27,8 @@ O pipeline utiliza Selenium para scraping histórico e Requests para consumo de 
 | **Ingestão IBGE** | `ingest_muni_ibge.py` | Carga de metadados geográficos dos municípios. |
 | **Ingestão Bronze** | `ingest_duckdb.py` | Carga física dos dados históricos no DuckDB. |
 | **View Bronze** | `update_bronze_view` | Cria **VIEW dinâmica** para dados CEMADEN (sem duplicação). |
+| **Transformação Silver** | `dbt run` | Modelagem, limpeza, enriquecimento espacial e métricas sazonais via dbt. |
+| **Qualidade de Dados** | `dbt test` | Testes de integridade (QA) nas chaves compostas e limites da camada Medalhão. |
 | **Orquestração** | Airflow | DAGs para carga diária (APAC) e a cada 15 min (CEMADEN). |
 
 ---
@@ -60,6 +62,8 @@ Airflow DAG (15 em 15 min)
 | **Raw (API)** | `include/data/raw/api_cemaden/` | Parquet | Particionamento Hive: `ano=Y/mes=M/dia=D/`. |
 | **Bronze (Hist)** | `bronze.monitoramento_pluviometrico` | DuckDB Table | Dados históricos carregados fisicamente. |
 | **Bronze (15min)**| `bronze.apac_15min_bronze` | DuckDB **View** | View dinâmica sobre os arquivos Parquet da Raw. |
+| **Silver**| `silver.mapeamento_estacoes` | DuckDB Table | Cadastro unificado das estações deduplicadas (CEMADEN + IBGE). |
+| **Silver**| `silver.monitoramento_pluviometrico` | DuckDB Table | One-Big-Table enriquecida com latitudes, alertas climáticos e médias móveis. |
 
 ---
 
@@ -159,6 +163,12 @@ PEPluvi/
 │       └── load/
 │           └── ingest_duckdb.py  # ETL Parquet → DuckDB bronze
 ├── transform/                    # modelagem dbt (Silver → Gold)
+│   ├── dbt_project.yml           # configurações globais do dbt
+│   ├── macros/                   # funções SQL utilitárias (ex: clean_string)
+│   └── models/
+│       ├── bronze/               # declaração de sources da raw e staging IBGE
+│       ├── silver/               # tabelas enriquecidas (mapeamento e monitoramento)
+│       └── gold/                 # agregações finais de negócio (em desenvolvimento)
 ├── Makefile                      # atalhos de execução
 ├── pyproject.toml                # dependências e linting (Ruff)
 ├── Dockerfile                    # imagem customizada (Chrome p/ Selenium)
@@ -173,9 +183,8 @@ PEPluvi/
 
 ## Próximos passos
 
-- **Transformação (dbt)** — Modelagem em camadas Bronze → Silver → Gold com testes de qualidade
-- **Análises Gold** — Comparativo ano a ano, média histórica, tendência de longo prazo, ranking de eventos extremos
-- **Dashboards (Metabase)** — Visualizações interativas com mapas e séries temporais
+- **Análises Gold** — Construção de modelos dbt agregados (comparativo ano a ano, média histórica, tendência de longo prazo, ranking de eventos extremos).
+- **Dashboards (Metabase)** — Visualizações interativas com mapas e séries temporais consumindo nossa tabela Silver como *One-Big-Table* (OBT).
 
 ---
 

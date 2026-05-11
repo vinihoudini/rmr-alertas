@@ -41,8 +41,9 @@ dags/exampledag.py
 include/pipeline/extract/scraper.log
 
 # dbt
-target/
-dbt_packages/
+transform/target/
+transform/dbt_packages/
+transform/logs/
 
 # Dados locais (segurança extra)
 *.parquet
