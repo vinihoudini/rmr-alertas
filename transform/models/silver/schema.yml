@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: monitoramento_pluviometrico
+    description: "Modelo silver consolidado contendo histórico diário de chuvas por posto da APAC enriquecido com dados do IBGE, coordenadas e alertas."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - codigo_posto
+            - data
+    columns:
+      - name: codigo_posto
+        tests:
+          - not_null
+      - name: data
+        tests:
+          - not_null
+      - name: ano
+        tests:
+          - not_null
+      - name: mes
+        tests:
+          - not_null
+      - name: dia
+        tests:
+          - not_null
+      - name: periodo_clima
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Chuvoso', 'Seco', 'Desconhecido']
+      - name: alerta_chuva
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Normal', 'Perigo Potencial', 'Perigo', 'Grande Perigo']

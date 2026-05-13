@@ -20,17 +20,21 @@ __pycache__/
 *.pyo
 .mypy_cache/
 .ruff_cache/
+*.egg-info/
+dist/
 
 # Variáveis de ambiente
 .env
 .env.local
+.env.production
 
-# DuckDB (banco local — nunca versionar)
+# DuckDB
 *.duckdb
 *.duckdb.wal
 
 # Dados brutos do pipeline
 data/
+include/data/
 *.parquet
 *.csv
 
@@ -46,15 +50,10 @@ build/
 .cache/
 .turbo/
 
-# Variáveis de ambiente
-.env.local
-.env.production
-
 # Tipos gerados
 next-env.d.ts
 
-
-# Tokens e chaves — NUNCA versionar
+# Tokens e chaves
 *.pem
 *.key
 secrets.json
@@ -63,7 +62,24 @@ secrets.json
 *.duckdb
 *.sqlite
 *.db
+*.tmp/
 
 # Logs
 *.log
 logs/
+
+# Airflow / Astronomer
+airflow.db
+airflow.cfg
+.astro/
+.dockerignore
+airflow_settings.yaml
+packages.txt
+tests/dags/
+dags/exampledag.py
+include/pipeline/extract/scraper.log
+
+# dbt
+transform/target/
+transform/dbt_packages/
+transform/logs/

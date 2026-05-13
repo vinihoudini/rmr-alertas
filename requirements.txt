@@ -1,0 +1,21 @@
+# Scraping
+selenium>=4.20
+beautifulsoup4>=4.12
+
+# Dados
+pandas>=2.0
+numpy>=1.26
+duckdb>=1.0
+pyarrow>=14.0
+
+# Utilidades
+lxml>=5.0
+
+# Transformação (dbt)
+dbt-duckdb>=1.8.0
+
+# Orquestração (Airflow via Astro CLI)
+# apache-airflow>=2.9
+
+# Configurações
+python-dotenv>=1.0.0

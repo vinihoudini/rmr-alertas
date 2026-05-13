@@ -1,0 +1,6 @@
+pepluvi:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../include/data/pepluvi.duckdb
