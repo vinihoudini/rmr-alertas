@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: gold_grid_risk
+    description: "Modelo Gold com o risco agregado por município, consumido pela API FastAPI."
+    columns:
+      - name: id
+        description: "ID sequencial do município"
+      - name: municipio
+        description: "Nome do município"
+      - name: nivel_alerta
+        description: "Nível de alerta formatado com emoji (🟢, 🟡, 🟠, 🔴)"
+      - name: atualizacao
+        description: "Data/hora da última atualização dos dados"

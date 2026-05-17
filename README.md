@@ -11,11 +11,9 @@ O sistema responde três perguntas em ordem crescente de complexidade:
 
 | Etapa | Pergunta | Status |
 |-------|----------|--------|
-| 1 | **Vai chover onde?** — Pipeline meteorológico + interface pública | ✅ Concluída |
+| 1 | **Vai chover onde?** — Pipeline meteorológico + dashboard base | ✅ Concluída |
 | 2 | **Onde vai alagar?** — Risco geoespacial (topografia, marés, rios) | 🔄 Em desenvolvimento |
-| 3 | **Quando e onde exatamente?** — Nowcasting por radar + ML | 🔜 Planejada |
-
-Cobertura: **9 municípios** da RMR em um grid de **48 pontos** com células de 5km².
+| 3 | **Quando e onde exatamente?** — Nowcasting por radar + ML | 🔜 Planejado |
 
 ---
 
